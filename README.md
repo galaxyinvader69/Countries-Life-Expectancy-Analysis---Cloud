@@ -6,7 +6,7 @@ This project aims to predict the life expectancy of countries based on a variety
 
 ## Dataset Description
 
-The dataset is present in the `data` folder. Please ensure you have downloaded the dataset from Kaggle and saved it in the appropriate location. 
+The dataset is present in the `data` folder. Please ensure you have downloaded the dataset from Kaggle and saved it in the appropriate location.
 
 The dataset contains the following columns:
 
@@ -103,3 +103,44 @@ To run this project locally, you will need the following Python packages:
 - matplotlib
 - seaborn
 - xgboost
+
+## Hosting the HTML Report on AWS S3
+
+After completing the analysis, we compiled all the results, visualizations, and insights into an HTML file and saved it as `cc_project.html`. 
+
+To upload this HTML file to AWS S3 and host a webpage, follow these steps:
+
+### 1. Create an S3 Bucket
+- Log into your [AWS Management Console](https://aws.amazon.com/console/).
+- Navigate to the **S3** service.
+- Click on **Create bucket**.
+- Choose a globally unique name for the bucket (e.g., `life-expectancy-prediction`).
+- Choose your region and click **Create**.
+
+### 2. Upload the HTML File to the S3 Bucket
+- Once the bucket is created, click on the **bucket name** to open it.
+- Click **Upload** and select the `cc_project.html` file from your local machine.
+- Click **Upload** to upload the file to your bucket.
+
+### 3. Make the HTML File Public
+- Click on the uploaded `cc_project.html` file in the S3 bucket.
+- Under the **Permissions** tab, find **Block public access (bucket settings)** and click **Edit**.
+- Uncheck **Block all public access** and confirm by clicking **Save changes**.
+- Go back to the **cc_project.html** file and click on the **Actions** dropdown, then select **Make public**.
+
+### 4. Enable Static Website Hosting
+- In the **Properties** tab of the S3 bucket, scroll down to **Static website hosting**.
+- Enable the option and select **Use this bucket to host a website**.
+- In the **Index document** field, enter `cc_project.html`.
+- Click **Save changes**.
+
+### 5. Access the Webpage
+- After enabling static website hosting, you will see an endpoint URL, such as:
+  `http://life-expectancy-prediction.s3-website-us-east-1.amazonaws.com`
+- Visit this URL in your browser, and you will see the hosted HTML report.
+
+---
+
+## Accessing Information from the Cloud
+
+With the HTML report successfully hosted on AWS S3, you can now access all the information, visualizations, and insights directly from the cloud. This makes it easy to share the analysis and findings with others or access the report remotely at any time. Simply visit the provided S3 URL to view the full project details.
